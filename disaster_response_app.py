@@ -23,6 +23,9 @@ from streamlit import components
 import requests
 import json
 
+# UCF banner image
+st.image("./UCF.jpg", width=600, caption="University of Central Florida")
+
 
 def get_road_route(start_coords, end_coords):
     url = f"http://router.project-osrm.org/route/v1/driving/{start_coords[1]},{start_coords[0]};{end_coords[1]},{end_coords[0]}?overview=full&geometries=geojson"
@@ -58,12 +61,12 @@ st.markdown(
 )
 
 # Streamlit App
-st.title("🚨 Intelligent Disaster Response System 🚨")
+st.title("🚨 Intelligent Disaster Response 🚨")
 
 # Sidebar for navigation
 st.sidebar.title("🌐 Navigation")
 page = st.sidebar.selectbox(
-    "Select a page", ["🏠 Home", "📦 Resource Allocation", "🗺️ Routing"]
+    "Select a page", ["🏠 Home", "📦 Resource Allocation", "🗺️ Routing", "🌡️ Sensor Data"]
 )
 
 
@@ -141,3 +144,18 @@ elif page == "🗺️ Routing":
         m = create_map_with_route(start_coords, end_coords)
         html_data = m._repr_html_()
         st.components.v1.html(html_data, width=800, height=400)
+
+# Page for Sensor Data
+elif page == "🌡️ Sensor Data":
+    st.header("🌡️ Sensor Data Integration 🌡️")
+
+    # Collect mock sensor data
+    weather_data = st.text_input(
+        "🌦️ Enter weather data", "Temperature: 25°C, Humidity: 60%"
+    )
+    seismic_data = st.text_input("🌍 Enter seismic data", "Richter Scale: 2.5")
+    other_sensor_data = st.text_input("🔬 Enter other sensor data", "Air Quality: Good")
+
+    # Simulate data integration
+    if st.button("🔍 Integrate Sensor Data"):
+        st.success("📋 Sensor data integrated. Ready for analysis.")
