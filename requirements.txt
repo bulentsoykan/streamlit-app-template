@@ -1,2 +1,7 @@
 streamlit>=1.26.0
 openai
+matplotlib
+python-dotenv
+streamlit_folium
+requests
+beautifulsoup4
